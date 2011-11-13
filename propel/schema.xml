@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<database name="supergepi" defaultIdMethod="native">
+
+	<table name="m_utilisateurs" phpName="MUtilisateur" description="Utilisateurs du logiciel">
+    <column name="id"  required="true" primaryKey="true" autoIncrement="true" type="INTEGER" size="4" description="cle primaire de la table utilisateurs" />
+		<column name="login" required="true" type="VARCHAR" size="50" description="Login de l'utilisateur" />
+		<column name="nom" type="VARCHAR" required="true" size="50" description="Nom de l'utilisateur" />
+		<column name="prenom" required="true" type="VARCHAR" size="50" description="Prenom de l'utilisateur" />
+		<column name="civilite" required="true" type="VARCHAR" size="5" description="Civilite" />
+		<column name="password" required="true" type="VARCHAR" size="100" description="Mot de passe" />
+		<column name="email" required="true" type="VARCHAR" size="100" description="Email de l'utilisateur" />
+		<column name="statut" required="true" type="VARCHAR" size="20" default="inscripteur" description="Statut de l'utilisateur" />
+    <column name="sso" required="true" type="CHAR" size="1" default="n" description="Si l'utilisateur existe en sso" />
+	</table>
+
+  <table name="m_settings" phpName="MSetting" description="Reglages de l'interface">
+    <column name="id" required="true" primaryKey="true" autoIncrement="true" type="INTEGER" size="4" description="cle primaire de la table m_settings" />
+    <column name="nom" required="true" type="VARCHAR" size="100" description="Nom du reglage" />
+		<column name="valeur" required="true" type="VARCHAR" size="100" description="Valeur de ce reglage" />
+  </table>
+
+	<table name="m_etablissements" phpName="MListeEtablissement" description="Liste des etablissements en multisite">
+    <column name="id" required="true" primaryKey="true" autoIncrement="true" type="INTEGER" size="4" description="cle primaire de la table m_etablissements" />
+		<column name="nom" required="true" type="VARCHAR" size="200" description="Nom de l'etablissement" />
+    <column name="type" required="true" type="VARCHAR" size="20" description="Type de l'etablissement (clg, lyc, cfa, ecole, ...)" />
+    <column name="rne" required="true" type="VARCHAR" size="15" description="Nombre de place disponible pour cet atelier" />
+		<column name="nom_base" type="VARCHAR" required="true" size="30" default="0" description="Base de donnees de cet etablissement" />
+    <validator column="nom_base">
+      <rule name="unique" message="Cette base existe déjà !" />
+    </validator>
+ 		<column name="user_base" type="VARCHAR" required="true" size="30" default="0" description="Utilisateur MySql de cette Base de donnees" />
+ 		<column name="mdp_base" type="VARCHAR" required="true" size="30" default="0" description="mdp de l'utilisateur MySql de cette Base de donnees" />
+    <column name="host_base" type="VARCHAR" required="true" size="30" default="0" description="Domaine du serveur MySql" />
+    <column name="path" type="VARCHAR" required="true" size="30" default="0" description="Chemin relatif de Gepi" />
+    <column name="created_on" required="true" type="INTEGER" size="12" default="0" description="timestamp UNIX de creation, pour savoir si la base est creee" />
+    <column name="updated_on" required="true" type="INTEGER" size="12" default="0" description="timestamp UNIX de modification" />
+	</table>
+
+  <table name="m_logs" phpName="MLogConnexion" description="Logs de connexion">
+    <column name="id" required="true" primaryKey="true" autoIncrement="true" type="INTEGER" size="4" description="cle primaire de la table _logs" />
+    <column name="debut" required="true" type="INTEGER" size="12" description="timestamp UNIX du debut" />
+    <column name="fin" required="true" type="INTEGER" size="12" description="timestamp UNIX de la fin" />
+    <column name="ip" type="VARCHAR" required="true" size="30" default="0" description="Adresse IP de l'utilisateur" />
+    <column name="type" type="VARCHAR" required="true" size="30" default="session" description="Type de log" />
+    <column name="marqueur" type="VARCHAR" required="true" size="30" default="0" description="Marqueur le temps de la session" />
+    <column name="utilisateur_id" required="true" type="INTEGER" size="4" description="cle etrangere de l'utilisateur logue" />
+    <foreign-key foreignTable="m_utilisateurs" onDelete="CASCADE">
+			<reference local="utilisateur_id" foreign="id"/>
+		</foreign-key>
+  </table>
+
+  <table name="m_listusers" phpName="MListeUsers" description="Liste des utilisateurs des differents etablissements">
+    <column name="id" required="true" primaryKey="true" autoIncrement="true" type="INTEGER" size="4" description="cle primaire de la table m_listusers" />
+	<column name="login" required="true" type="VARCHAR" size="200" description="login de l'utilisateur" />
+    <column name="rne" required="true" type="VARCHAR" size="15" description="RNE de l'etablissement" />
+    <column name="statut" required="true" type="VARCHAR" size="50" description="Statut de l'utilisateur" />
+    <column name="created_on" required="true" type="INTEGER" size="12" default="0" description="timestamp UNIX de première connexion" />
+    <column name="updated_on" required="true" type="INTEGER" size="12" default="0" description="timestamp UNIX de dernière connexion" />
+  </table>
+
+  <table name="annuaire_users_sans_etab" phpName="UtilisateurSansEtab" description="Liste des utilisateurs sans établissements">
+    <column name="id" required="true" primaryKey="true" autoIncrement="true" type="INTEGER" size="4" description="cle primaire de la table" />
+    <column name="uid" required="true" type="VARCHAR" size="15" description="uid de l'utilisateur" />
+    <column name="nom" required="true" type="VARCHAR" size="100" description="Nom de l'utilisateur" />
+    <column name="prenom" required="true" type="VARCHAR" size="100" description="Prenom de l'utilisateur" />
+	<column name="login" required="true" type="VARCHAR" size="200" description="login de l'utilisateur" />
+    <column name="mdp" required="true" type="VARCHAR" size="200" description="mot de passe de l'utilisateur" />
+    <column name="created_on" required="true" type="INTEGER" size="12" default="0" description="timestamp UNIX de creation" />
+  </table>
+</database>

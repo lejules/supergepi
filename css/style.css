@@ -1,0 +1,24 @@
+body{background:#FDFCE8;margin:0;padding:0;font-family:Arial; font-size:14px;}
+.red{color: red; font-weight: bold;}
+.green{color: green; font-weight: bold;}
+.blue{color: blue; font-weight: bold;}
+.lien{cursor:pointer;color:blue;}
+.italic{font-style:italic;}
+.right{text-align:right;}
+.absolute{position:absolute;}
+.table{border:solid gray 1px; background-color: silver;padding: 10px 10px 10px 10px; margin-left: 20px; margin-right:20px;width:95%;}
+.table td{border:solid gray 1px;}
+#entete{height:65px; padding-bottom:6px; position:relative;background-color:#001100;}
+#entete h2{ margin-top:10px; margin-left:10px; text-align:center;font-style:italic;color:#CCCCCC; font-size:34px; display:block;}
+#essaiMenu {margin: 0;padding: 0.1em 1em;background: #686397;color: #FFF;}
+#essaiMenu li {display: inline;margin-right: 0.5em;padding-right: 0.75em;border-right: 1px solid #99C;font-weight: bold;font-size: 0.8em;}
+#essaiMenu li.last {border-right: 0;}
+#essaiMenu a {color: white;}
+#essaiMenu a:hover {color: aqua;}
+#divLogin{margin-left:40%; margin-top:120px;border:solid gray 1px;width:350px;}
+#divLogin p{text-align:right;width:320px}
+.form{margin-left:10%;border:solid gray 1px;}
+.form p{text-align:right;}
+#divdroite{position:absolute;margin-left:450px;background-color:silver;border:solid gray 2px;}
+#idMonCompte{border:solid gray 1px; width:30%;margin-left:5%;margin-top:2%;-moz-border-radius:10px;}
+#idMonCompte p{text-align: right; width:90%;}
