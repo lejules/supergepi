@@ -1,0 +1,9 @@
+/************************************************/
+SuperGepi est une application qui permet à un sadmin de gérer
+un gepi en multisite, c'est à dire une seule arborescence de Gepi
+pour autant de base de données que le serveur peut en supporter.
+
+Pour information, l'installation connue qui utilise ce dispositif
+a dépassé 200 établissements.
+
+@ suivre......
